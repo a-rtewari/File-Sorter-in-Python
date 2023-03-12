@@ -1,0 +1,37 @@
+
+#take file path and store as a variable
+#put 'r' in front of file path string to store as a raw text due to slashes
+path = r"C:/Users/Sahil/Documents/Anmol/Projects/Python Project 1/"
+
+#show all files within our path
+file_names = os.listdir(path)
+print(file_names)
+['da baby.jpg', 'monteCarlo.txt', 'monteCarloddd.txt', 'test.csv']
+# Check if the appropriate folder exists and add it if it is not there
+​
+folder_names = ["text_files", "jpeg_files", "csv_files"]
+​
+for loop in range(0, 3):
+    if not os.path.exists(path + folder_names[loop]):
+        print(path + folder_names[loop])
+        os.makedirs(path + folder_names[loop])
+        
+        
+#This will read the files, check them, and place them in their corresponding file folder
+​
+​
+for file in file_names:
+    if ".csv" in file and not os.path.exists(path + "csv_files/" + file):
+        shutil.move(path + file, path + "csv_files/" + file)
+      
+    
+    elif ".txt" in file and not os.path.exists(path + "text_files/" + file):
+        shutil.move(path + file, path + "text_files/" + file)
+        
+    
+    elif ".jpg" in file and not os.path.exists(path + "jpeg_files/" + file):
+        shutil.move(path + file, path + "jpeg_files/" + file)
+       
+    else:
+        print("Some files may have not been moved.")
+    
